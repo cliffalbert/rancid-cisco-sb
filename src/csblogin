@@ -437,6 +437,10 @@ proc login { router user passwd cmethod cyphertype identfile} {
 	    	       		  send "$passwd\r"
 				  exp_continue
 				}
+	    -re "hange it now .*$" {
+				  send "N\r"
+				  exp_continue
+				}
 
 	    -re "$prompt"		{ break; }
 	    denied	{ send_user "\nError: Check your password for $router\n"
